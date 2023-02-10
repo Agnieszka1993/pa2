@@ -32,13 +32,18 @@ def export_data(bookings, filename='booking.txt', mode='a'):
     :raises ValueError: if mode other than 'w' or 'a' was given. Error message:
         'Wrong write mode'
     """
-
-     # if mode != ['a', 'w']:
-     #     return 'Wrong write mode'
-     # else:
-     #    with open(filename, mode) as file:
-     #        booking = ';'.join(bookings)
-     #        file.write(booking + '\n')
+    mode_correct = ['a', 'w']
+     if mode in mode_correct:
+         raise ValueError('Wrong write mode')
+     else:
+        with open(filename, mode) as file:
+            if mode == 'a':
+                for booking in bookings:
+                    row = ';'.join(booking)
+                    file.write(row + '\n')
+                else:
+                    line = ';'.join(bookings)
+                    file.write(line)
 
 
 def get_rows_by_booking_status(rows, status):
@@ -57,7 +62,7 @@ def get_rows_by_booking_status(rows, status):
         if status == row[8]:
             lista.append(row)
     if len(lista) == 0:
-        return 'Status is not present in list'
+        raise ValueError('Status is not present in list')
     return lista
 
 
