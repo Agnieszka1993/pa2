@@ -33,9 +33,9 @@ def export_data(bookings, filename='booking.txt', mode='a'):
         'Wrong write mode'
     """
     mode_correct = ['a', 'w']
-     if mode in mode_correct:
+    if mode in mode_correct:
          raise ValueError('Wrong write mode')
-     else:
+    else:
         with open(filename, mode) as file:
             if mode == 'a':
                 for booking in bookings:
